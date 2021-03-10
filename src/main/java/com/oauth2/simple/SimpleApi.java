@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -22,5 +23,14 @@ public class SimpleApi {
         String message = (String) request.getSession().getAttribute("error.message");
         request.getSession().removeAttribute("error.message");
         return message;
+    }
+    @GetMapping("/api/user")
+    public Map<String, String> getUserInfo(@AuthenticationPrincipal OAuth2User user) {
+
+        Map<String, String> userInfo = new HashMap<>();
+        userInfo.put("email", user.getAttribute("email"));
+        userInfo.put("id",    user.getAttribute("sub"));
+
+        return userInfo;
     }
 }
