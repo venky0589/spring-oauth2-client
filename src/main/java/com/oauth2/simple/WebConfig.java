@@ -48,10 +48,10 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                             request.getSession().setAttribute("error.message", exception.getMessage());
                             handler.onAuthenticationFailure(request, response, exception);
                         })
-                )
-                .exceptionHandling(e -> e
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 );
+//                .exceptionHandling(e -> e
+//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+//                );
         // @formatter:on
     }
 

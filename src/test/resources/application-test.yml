@@ -1,3 +1,5 @@
+server:
+  port: 9000
 spring:
   security:
     oauth2:
@@ -8,13 +10,8 @@ spring:
             token-uri: http://localhost:8077/oauth/token
             user-info-uri: http://localhost:8077/userinfo
             user-name-attribute: sub
+
         registration:
-          github:
-            clientId: 8bcfe1e20f40e221e403
-            clientSecret: f206a5d74ceff5a54e1356a2062df06f5d7e563a
-          google:
-            client-id: 21321830169174-1cj6oosadhe17jstk1mhrcsm642okbt6.apps.googleusercontent.com
-            client-secret: 0UO1QTS5SH8BaCujgg7ltsN4
           wiremock:
             provider: wiremock
             authorization-grant-type: authorization_code
@@ -22,5 +19,3 @@ spring:
             redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
             clientId: wm
             clientSecret: whatever
-
-
