@@ -1,15 +1,12 @@
 package com.oauth2.simple;
-import org.fluentlenium.adapter.junit.FluentTest;
+
+import org.fluentlenium.adapter.junit.jupiter.FluentTest;
 import org.fluentlenium.configuration.FluentConfiguration;
 import org.fluentlenium.core.annotation.Page;
 import org.fluentlenium.core.hook.wait.Wait;
-import org.junit.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.Capabilities;
-                                        import org.openqa.selenium.WebDriver;
-import java.util.concurrent.TimeUnit;   import org.openqa.selenium.chrome.ChromeDriver; 
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 @Wait
 @FluentConfiguration(webDriver = "chrome")

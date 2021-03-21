@@ -1,7 +1,7 @@
 package com.oauth2.simple;
 
-import org.fluentlenium.adapter.junit.FluentTest;
-import org.junit.Test;
+import org.fluentlenium.adapter.junit.jupiter.FluentTest;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 

@@ -15,8 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<fluentlenium.version>3.4.1</fluentlenium.version>
-		<selenium.version>3.5.3</selenium.version>
+		<fluentlenium.version>4.6.1</fluentlenium.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,7 +60,30 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+
+			<!-- exclude junit 4 -->
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+
 		</dependency>
+
+		<!-- junit 5 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
         <!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock -->
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
@@ -83,22 +105,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.fluentlenium</groupId>
-			<artifactId>fluentlenium-junit</artifactId>
-			<version>${fluentlenium.version}</version>
-			<scope>test</scope>
+			<artifactId>fluentlenium-junit-jupiter</artifactId>
+			<version>4.6.1</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.fluentlenium</groupId>
 			<artifactId>fluentlenium-assertj</artifactId>
 			<version>${fluentlenium.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
@@ -123,6 +141,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

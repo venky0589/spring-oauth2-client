@@ -2,14 +2,14 @@ package com.oauth2.simple;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import org.fluentlenium.adapter.junit.FluentTest;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.fluentlenium.adapter.junit.jupiter.FluentTest;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +25,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
 
@@ -37,7 +36,7 @@ public class MockLabOAuth2Test extends FluentTest {
 
     @Autowired
     private MockMvc mockMvc;
-    private WebDriver webDriver;
+    private static WebDriver webDriver;
 
     @Override
     public WebDriver newWebDriver() {
@@ -46,10 +45,6 @@ public class MockLabOAuth2Test extends FluentTest {
        return webDriver;
     }
 
-    @Rule
-    public WireMockRule mockOAuth2Provider = new WireMockRule(wireMockConfig()
-            .port(8077)
-            .extensions(new ResponseTemplateTransformer(true)));
 
     @Test
     public void logs_in_via_wiremock_sso() throws Exception {
@@ -71,11 +66,9 @@ public class MockLabOAuth2Test extends FluentTest {
         assertThat(node.get("email").asText()).isEqualTo("krishna@test.org");
     }
 
-    @After
-    public void reset() {
-        if (webDriver != null) {
-            webDriver.close();
-        }
+    @AfterAll
+    public static void reset() {
+
     }
 
     static {
